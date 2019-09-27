@@ -28,7 +28,7 @@ async function buildMarkdown (cb) {
       const html = ejs.render(templateHtml, { body: bodyRendered, attributes })
       await fs.writeFileSync(mdOutputPath, html)
     }
-    ncp(publicPath, distPath, { filter: /.gitkeep/ }, (err) => {
+    ncp(publicPath, distPath, (err) => {
       cb(err)
     })
   } catch (error) {
