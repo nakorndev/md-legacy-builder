@@ -5,13 +5,16 @@ const MarkdownIt = require('markdown-it')
 const glob = require('glob')
 const ejs = require('ejs')
 const fm = require('front-matter')
+const ncp = require('ncp').ncp
 
 const md = new MarkdownIt()
 
+const distPath = path.resolve(__dirname, './dist')
+const mdPath = path.resolve(__dirname, './docs/*.md')
+const publicPath = path.resolve(__dirname, './public')
+
 async function buildMarkdown (cb) {
   try {
-    const distPath = path.resolve(__dirname, './dist')
-    const mdPath = path.resolve(__dirname, './docs/*.md')
     const templateHtml = await fs.readFileSync(path.resolve(__dirname, './templates/default.ejs'), 'utf-8')
     const mdFiles = await glob.sync(mdPath)
     if (await !fs.existsSync(distPath)){
@@ -25,7 +28,9 @@ async function buildMarkdown (cb) {
       const html = ejs.render(templateHtml, { body: bodyRendered, attributes })
       await fs.writeFileSync(mdOutputPath, html)
     }
-    cb()
+    ncp(publicPath, distPath, { filter: /.gitkeep/ }, (err) => {
+      cb(err)
+    })
   } catch (error) {
     cb(error)
   }
