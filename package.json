@@ -1,0 +1,27 @@
+{
+  "name": "md-legacy-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nakorndev/md-legacy-builder.git"
+  },
+  "author": "Nakorn Sinpadung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nakorndev/md-legacy-builder/issues"
+  },
+  "homepage": "https://github.com/nakorndev/md-legacy-builder#readme",
+  "devDependencies": {
+    "ejs": "^2.7.1",
+    "eslint-config-standard": "^14.1.0",
+    "front-matter": "^3.0.2",
+    "glob": "^7.1.4",
+    "gulp": "^4.0.2",
+    "markdown-it": "^10.0.0"
+  }
+}
